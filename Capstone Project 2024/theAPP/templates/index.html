@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Image Classification</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Image Classification</h1>
+      <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file">Upload an Image</label>
+          <input type="file" class="form-control-file" id="file" name="file" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+      {% if filename %}
+      <div class="mt-5 result">
+        <h2>Prediction Result</h2>
+        <img src="{{ url_for('uploaded_file', filename=filename) }}" class="img-thumbnail" alt="Uploaded Image">
+        <p><strong>Class:</strong> {{ class_name }}</p>
+        <p><strong>Confidence Score:</strong> {{ confidence_score }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
